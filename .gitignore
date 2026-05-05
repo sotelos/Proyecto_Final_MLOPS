@@ -1,0 +1,12 @@
+# MLflow local
+mlruns/
+mlartifacts/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
