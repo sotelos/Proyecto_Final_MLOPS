@@ -3,11 +3,20 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import os
 import mlflow
 import mlflow.sklearn
 from mlflow.models.signature import infer_signature
 
 def run_experiment():
+    # ESTO ASEGURA QUE TODO SE GUARDE EN UN SOLO LUGAR (OneDrive Proof)
+    base_path = os.path.abspath(os.path.dirname(__file__))
+    db_path = os.path.join(base_path, "..", "mlflow_final.db")
+    mlflow.set_tracking_uri(f"sqlite:///{db_path}")
+    
+    # ... resto de tu código igual ...
+    mlflow.set_experiment("Proyecto_Final_Seguros_EAN")
+
     # Carga de datos
     url = "https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/insurance.csv"
     df = pd.read_csv(url)
