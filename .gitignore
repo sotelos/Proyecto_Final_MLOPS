@@ -1,6 +1,9 @@
 # MLflow local
 mlruns/
 mlartifacts/
+mlflow
+mlflow.db
+mlflow_final.db
 
 # Python
 __pycache__/
