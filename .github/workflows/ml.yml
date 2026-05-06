@@ -1,20 +1,16 @@
 name: MLOps_Pipeline_Seguros_EAN
 
-# 1. Definimos CUÁNDO se activa (al hacer push a la rama main)
-# Le estamos diciendo a GitHub: "Cada vez que yo suba código, alquila un servidor Linux, 
-# instala mi requirements.txt y corre mi entrenamiento de seguros". Es la base de la Integración Continua (CI).
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 
-# 2. Definimos QUÉ va a hacer
 jobs:
   build-and-train:
-    runs-on: ubuntu-latest # Usamos un servidor Linux temporal de GitHub
-   steps:
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Descargar el código
         uses: actions/checkout@v3
 
@@ -24,19 +20,19 @@ jobs:
           python-version: '3.9'
 
       - name: Instalar dependencias
-        run: make install # Usamos el comando del Makefile
+        run: make install
 
       - name: Verificar calidad de código (Lint)
         run: make lint
 
       - name: Ejecutar Pruebas
-        run: make test    # Cumple requisito de validación
+        run: make test
 
       - name: Ejecutar Entrenamiento
-        run: make train   # Usamos el comando del Makefile
+        run: make train
 
       - name: Guardar Modelo como Artefacto
         uses: actions/upload-artifact@v4
         with:
-      - name: modelo-seguros-ean
-        path: mlruns/   # Exporta los resultados de MLflow a GitHub
+          name: modelo-seguros-ean
+          path: mlruns/
