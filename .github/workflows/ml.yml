@@ -14,7 +14,6 @@ on:
 jobs:
   build-and-train:
     runs-on: ubuntu-latest # Usamos un servidor Linux temporal de GitHub
-
    steps:
       - name: Descargar el código
         uses: actions/checkout@v3
@@ -39,5 +38,5 @@ jobs:
       - name: Guardar Modelo como Artefacto
         uses: actions/upload-artifact@v4
         with:
-          name: modelo-seguros-ean
-          path: mlruns/   # Exporta los resultados de MLflow a GitHub
+      - name: modelo-seguros-ean
+        path: mlruns/   # Exporta los resultados de MLflow a GitHub
