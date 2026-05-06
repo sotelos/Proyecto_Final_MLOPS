@@ -24,8 +24,15 @@ def run_experiment():
     url = "https://raw.githubusercontent.com/stedy/Machine-Learning-with-R-datasets/master/insurance.csv"
     df = pd.read_csv(url)
     
+    # Preprocesamiento Eliminación de datos nulos
+    print("Verificando nulos...")
+    print(df.isnull().sum())
+    df = df.dropna()  # Manejo de nulos: Eliminación de filas incompletas
+    print("Nulos eliminados.")
+
     # Preprocesamiento: Variables dummy para Sexo, Fumador y Región
     df = pd.get_dummies(df, drop_first=True)
+
     
     X = df.drop('charges', axis=1)
     y = df['charges']
